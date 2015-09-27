@@ -18,3 +18,4 @@
 -keepclasseswithmembers class * {
     @retrofit.http.* <methods>;
 }
+-include ../proguard-com.twitter.sdk.android.twitter.txt
