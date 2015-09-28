@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId "com.technologylabs.paradisegardensapp"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -40,4 +40,6 @@ dependencies {
     compile('com.twitter.sdk.android:twitter:1.8.0@aar') {
         transitive = true;
     }
+    compile 'com.android.support:cardview-v7:21.0.+'
+    compile 'com.android.support:recyclerview-v7:21.0.+'
 }

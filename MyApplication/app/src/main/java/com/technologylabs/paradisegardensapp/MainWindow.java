@@ -1,13 +1,13 @@
 package com.technologylabs.paradisegardensapp;
 
-import android.support.v7.app.ActionBarActivity;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainWindow extends ActionBarActivity {
-
+public class MainWindow extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
