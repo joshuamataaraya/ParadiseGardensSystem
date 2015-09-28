@@ -17,7 +17,7 @@ import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 
-public class LoginTwitter extends Activity {
+public class LoginTwitterController extends Activity {
 
     private TwitterLoginButton loginButton;
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
@@ -37,7 +37,7 @@ public class LoginTwitter extends Activity {
             @Override
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API calls
-                Intent myIntent=new Intent(LoginTwitter.this, MainWindow.class);
+                Intent myIntent=new Intent(LoginTwitterController.this, MainWindowController.class);
                 startActivity(myIntent);
             }
 

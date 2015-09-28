@@ -2,17 +2,33 @@ package com.technologylabs.paradisegardensapp;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
-public class MainWindow extends Activity {
+public class MainWindowController extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_window);
+
+        final Button button = (Button) findViewById(R.id.atracciones);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent intent = new Intent(MainWindowController.this, Info_Window_Controller.class);
+                Bundle b = new Bundle();
+                b.putInt("Selection", 1); //Your id
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override

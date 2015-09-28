@@ -2,17 +2,26 @@ package com.technologylabs.paradisegardensapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 
-public class Show_Info extends Activity {
+
+public class Info_Window_Controller extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show__info);
+
+        Bundle b = getIntent().getExtras();
+        int selection = b.getInt("Selection");
+        fillInformation(selection);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,5 +43,18 @@ public class Show_Info extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void fillInformation(int typeOfData){
+        RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
+        rv.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        rv.setLayoutManager(llm);
+        switch (typeOfData){
+            case 1:
+                ArrayList<Attraction> atracctions= WebServiceConnection.getInstance().getAtracciones();
+                RVAdapter adapter = new RVAdapter(atracctions);
+                rv.setAdapter(adapter);
+                break;
+        }
     }
 }
