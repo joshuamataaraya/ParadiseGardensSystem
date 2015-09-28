@@ -10,28 +10,24 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Joshua on 27/09/2015.
- */
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHolder >{
 
     List<Attraction> attractions;
 
+    public static class AttractionViewHolder extends RecyclerView.ViewHolder {
+        public CardView cv;
+        public TextView name;
+        public TextView description;
+
+        AttractionViewHolder (View itemView) {
+            super(itemView);
+            cv = (CardView)itemView.findViewById(R.id.rv);
+            name = (TextView)itemView.findViewById(R.id.name);
+            description = (TextView)itemView.findViewById(R.id.description);
+        }
+    }
     RVAdapter(List<Attraction> attractions){
         this.attractions = attractions;
-    }
-    @Override
-    public AttractionViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.abc_action_bar_title_item, viewGroup, false);
-        AttractionViewHolder pvh = new AttractionViewHolder(v);
-        return pvh;
-    }
-
-    @Override
-    public void onBindViewHolder(AttractionViewHolder attractionViewHolder, int i) {
-        attractionViewHolder.name.setText(attractions.get(i).name);
-        attractionViewHolder.description.setText(attractions.get(i).description);
-        attractionViewHolder.photo.setImageResource(attractions.get(i).photoId);
     }
 
     @Override
@@ -40,23 +36,23 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
+    public AttractionViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View v = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.card_attractions, viewGroup, false);
+        AttractionViewHolder pvh = new AttractionViewHolder(v);
+        return pvh;
     }
 
-    public static class AttractionViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
-        TextView name;
-        TextView description;
-        ImageView photo;
+    @Override
+    public void onBindViewHolder(AttractionViewHolder attractionViewHolder, int i) {
+        attractionViewHolder.name.setText(attractions.get(i).name);
+        attractionViewHolder.description.setText(attractions.get(i).description);
+    }
 
-        AttractionViewHolder (View itemView) {
-            super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.rv);
-            name = (TextView)itemView.findViewById(R.id.name);
-            description = (TextView)itemView.findViewById(R.id.description);
-            photo = (ImageView)itemView.findViewById(R.id.photo);
-        }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
 }

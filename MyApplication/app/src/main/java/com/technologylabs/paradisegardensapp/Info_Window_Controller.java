@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Info_Window_Controller extends Activity {
@@ -45,15 +46,19 @@ public class Info_Window_Controller extends Activity {
         return super.onOptionsItemSelected(item);
     }
     public void fillInformation(int typeOfData){
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
-        rv.setLayoutManager(llm);
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.rv);
+        recycler.setHasFixedSize(true);
+
+        // Usar un administrador para LinearLayout
+        LinearLayoutManager lManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(lManager);
+
+        // Crear un nuevo adaptador
         switch (typeOfData){
             case 1:
-                ArrayList<Attraction> atracctions= WebServiceConnection.getInstance().getAtracciones();
+                List<Attraction> atracctions= WebServiceConnection.getInstance().getAtracciones();
                 RVAdapter adapter = new RVAdapter(atracctions);
-                rv.setAdapter(adapter);
+                recycler.setAdapter(adapter);
                 break;
         }
     }

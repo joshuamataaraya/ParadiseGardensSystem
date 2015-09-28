@@ -2,9 +2,6 @@ package com.technologylabs.paradisegardensapp;
 
 import java.util.ArrayList;
 
-/**
- * Created by Joshua on 27/09/2015.
- */
 public class WebServiceConnection {
     public static WebServiceConnection getInstance() {
         return ourInstance;
@@ -17,9 +14,11 @@ public class WebServiceConnection {
         Schedule sc= new Schedule("5pm");
         ArrayList<Schedule> schd= new ArrayList<>();
         schd.add(sc);
-        Attraction att= new Attraction("Montanna Rusa 1",schd,"Nice try",1);
+        Attraction att= new Attraction("Montanna Rusa 1",schd,"Nice try");
+        Attraction att2= new Attraction("Montanna Rusa 2",schd,"Nice try 2");
         ArrayList<Attraction> atracciones= new ArrayList<>();
         atracciones.add(att);
+        atracciones.add(att2);
         return atracciones;
     }
 

@@ -1,8 +1,19 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Base application theme. -->
-    <!-- inherit from the material theme -->
-    <style name="AppTheme" parent="android:Theme.Material">
+    <style name="appTheme" parent="Theme.AppCompat.Light">
+        <!-- Override the app bar color -->
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+    </style>
+    <style name="CardView.MyBlue">
+        <item name="cardBackgroundColor">@color/CardColor</item>
+        <item name="cardCornerRadius">18dp</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+    <style name="ActivityStyles">
+        <item name="android:background">@color/ColorBackground</item>
     </style>
 
 </resources>
