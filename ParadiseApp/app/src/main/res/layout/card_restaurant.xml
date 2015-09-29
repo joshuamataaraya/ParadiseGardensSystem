@@ -37,8 +37,8 @@
             android:layout_toRightOf="@id/TagSchedule"
             />
         <Button
-            android:layout_width="100"
-            android:layout_height="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Platos"
             android:layout_toRightOf="@+id/name"
             android:layout_alignParentRight="true"

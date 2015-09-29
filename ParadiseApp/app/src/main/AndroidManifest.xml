@@ -31,6 +31,10 @@
             android:name=".ShowInfoController"
             android:label="@string/title_activity_show_info" >
         </activity>
+        <activity
+            android:name=".SelectAttractionController"
+            android:label="@string/title_activity_select_atracction" >
+        </activity>
     </application>
 
 </manifest>

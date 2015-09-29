@@ -24,24 +24,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Horario: "
-            android:id="@+id/TagSchedule"
+            android:text="Precio: "
+            android:id="@+id/TagPrice"
             android:layout_below="@+id/name"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="De 5 a 9."
-            android:id="@+id/schedule"
+            android:text="5000"
+            android:id="@+id/price"
             android:layout_below="@+id/name"
-            android:layout_toRightOf="@id/TagSchedule"
+            android:layout_toRightOf="@id/TagPrice"
             />
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Articulos"
-            android:layout_toRightOf="@+id/name"
-            android:layout_alignParentRight="true"
+            android:text="Cantidad: "
+            android:id="@+id/TagAmount"
+            android:layout_below="@+id/TagPrice"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/amount"
+            android:text="7"
+            android:layout_below="@+id/TagPrice"
+            android:layout_toRightOf="@id/TagAmount"
             />
     </RelativeLayout>
 

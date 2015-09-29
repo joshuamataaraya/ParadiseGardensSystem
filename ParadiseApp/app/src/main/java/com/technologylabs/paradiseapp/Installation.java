@@ -10,8 +10,8 @@ public class Installation {
         this.photoId = photoId;
     }
 
-    public ArrayList<Schedule> getSchedule() {
-        return schedule;
+    public String getSchedule() {
+        return schedule.toString();
     }
 
     public String getName() {

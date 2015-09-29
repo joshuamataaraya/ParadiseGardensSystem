@@ -3,7 +3,12 @@ package com.technologylabs.paradiseapp;
 import java.util.ArrayList;
 
 public class Show extends Installation{
-    public Show(String name, ArrayList<Schedule> schedule, int photoId) {
+    public Show(String name, ArrayList<Schedule> schedule, String place, String description) {
         super(name, schedule);
+
+        this.place=place;
+        this.description=description;
     }
+    String place;
+    String description;
 }

@@ -1,4 +1,13 @@
 package com.technologylabs.paradiseapp;
 
-public class Food {
+import java.util.ArrayList;
+
+public class Food extends Installation{
+    public Food(String name, String description) {
+        super(name, null);
+        this.description=description;
+    }
+    String description;
 }
+
+

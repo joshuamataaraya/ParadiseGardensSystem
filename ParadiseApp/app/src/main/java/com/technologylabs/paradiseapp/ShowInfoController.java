@@ -53,10 +53,43 @@ public class ShowInfoController extends Activity {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
+        RVAdapter adapter;
+        List<Installation> installation;
         switch (typeOfData){
-            case 1:
-                List<Attraction> atracctions= WebServiceConnection.getInstance().getAtracciones();
-                RVAdapter adapter = new RVAdapter(atracctions);
+            case 1: //show attractions
+                installation= WebServiceConnection.getInstance().getAttractions();
+                adapter = new RVAdapter(installation,1);
+                recycler.setAdapter(adapter);
+                break;
+            case 2: //show simulators
+                installation= WebServiceConnection.getInstance().getSimulators();
+                adapter = new RVAdapter(installation,2);
+                recycler.setAdapter(adapter);
+                break;
+
+            case 3: //show restaurant
+                installation= WebServiceConnection.getInstance().getRestaurants();
+                adapter = new RVAdapter(installation,3);
+                recycler.setAdapter(adapter);
+                break;
+            case 4: //show food
+                installation= WebServiceConnection.getInstance().getFoods();
+                adapter = new RVAdapter(installation,4);
+                recycler.setAdapter(adapter);
+                break;
+            case 5: //show shows
+                installation= WebServiceConnection.getInstance().getShows();
+                adapter = new RVAdapter(installation,5);
+                recycler.setAdapter(adapter);
+                break;
+            case 6: //show stores
+                installation= WebServiceConnection.getInstance().getStores();
+                adapter = new RVAdapter(installation,6);
+                recycler.setAdapter(adapter);
+                break;
+            case 7: //show items
+                installation= WebServiceConnection.getInstance().getItems();
+                adapter = new RVAdapter(installation,7);
                 recycler.setAdapter(adapter);
                 break;
         }
