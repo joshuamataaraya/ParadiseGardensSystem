@@ -20,7 +20,7 @@ public class ShowInfoController extends Activity {
 
         Bundle b = getIntent().getExtras();
         int selection = b.getInt("Selection");
-        fillInformation(selection);
+        fillInformation(selection,b.getString("Id"));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ShowInfoController extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void fillInformation(int typeOfData){
+    public void fillInformation(int typeOfData, String id){
         RecyclerView recycler = (RecyclerView) findViewById(R.id.rv);
         recycler.setHasFixedSize(true);
 
@@ -71,7 +71,7 @@ public class ShowInfoController extends Activity {
                 break;
             case 4: //show food
                 this.setTitle("Comidas");
-                WebServiceConnection.getInstance().getFoods(recycler);
+                WebServiceConnection.getInstance().getFoods(recycler,id);
                 break;
             case 5: //show shows
                 this.setTitle("Shows");
@@ -83,7 +83,7 @@ public class ShowInfoController extends Activity {
                 break;
             case 7: //show items
                 this.setTitle("Art\u00edculos");
-                WebServiceConnection.getInstance().getItems(recycler);
+                WebServiceConnection.getInstance().getItems(recycler,id);
                 break;
             case 8: //show contactanos
                 this.setTitle("Cont\u00e1ctanos");

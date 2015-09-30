@@ -31,8 +31,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         public TextView amount;
         public TextView num;
         public TextView employment;
-
-
+        public Button btn;
+        public MainWindowController windowController;
 
         AttractionViewHolder (View itemView) {
             super(itemView);
@@ -83,8 +83,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         public void showRestaurats(){
             name = (TextView)itemView.findViewById(R.id.name);
             schedule = (TextView)itemView.findViewById(R.id.schedule);
-
-            //PENDING TO ADD BUTTONS OF FOODS
+            CardView cardView = (CardView)itemView.findViewById(R.id.cv);
+            this.btn= (Button)itemView.findViewById(R.id.btn);
         }
         public void showFood(){
             name = (TextView)itemView.findViewById(R.id.name);
@@ -99,7 +99,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         public void showStores(){
             name = (TextView)itemView.findViewById(R.id.name);
             schedule = (TextView)itemView.findViewById(R.id.schedule);
-            //PENDING TO ADD BUTTONS OF ITEMS
+            this.btn= (Button)itemView.findViewById(R.id.btn);
         }
         public void showItems(){
             name = (TextView)itemView.findViewById(R.id.name);
@@ -138,6 +138,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
             case 3: //show restaurant
                 v = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.card_restaurant, viewGroup, false);
+
                 break;
             case 4: //show food
                 v = LayoutInflater.from(viewGroup.getContext())
@@ -215,11 +216,23 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         attractionViewHolder.timeToWait.setText(simulator.timeToWait);
     }
     public void fillRestaurants(AttractionViewHolder attractionViewHolder, int i){
-        Restaurant restaurant=(Restaurant)installations.get(i);
+        final Restaurant restaurant=(Restaurant)installations.get(i);
 
         attractionViewHolder.name.setText(restaurant.name);
         attractionViewHolder.schedule.setText(restaurant.getSchedule());
 
+
+        attractionViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent intent = new Intent(v.getContext(),ShowInfoController.class);
+                Bundle b = new Bundle();
+                b.putInt("Selection", 4);
+                b.putString("Id", restaurant.id);
+                intent.putExtras(b);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
     public void fillFood(AttractionViewHolder attractionViewHolder, int i){
@@ -237,11 +250,22 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         attractionViewHolder.description.setText(show.description);
     }
     public void fillStores(AttractionViewHolder attractionViewHolder, int i){
-        Store store=(Store)installations.get(i);
+        final Store store=(Store)installations.get(i);
 
         attractionViewHolder.name.setText(store.name);
         attractionViewHolder.schedule.setText(store.getSchedule());
-        //PENDING TO ADD THE BUTTONS OF FOOD
+
+        attractionViewHolder.btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent intent = new Intent(v.getContext(),ShowInfoController.class);
+                Bundle b = new Bundle();
+                b.putInt("Selection", 7);
+                b.putString("Id", store.id);
+                intent.putExtras(b);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
     public void fillItems(AttractionViewHolder attractionViewHolder, int i){

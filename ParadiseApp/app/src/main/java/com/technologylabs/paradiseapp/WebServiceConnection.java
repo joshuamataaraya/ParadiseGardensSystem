@@ -37,8 +37,9 @@ public class WebServiceConnection {
 
     private String jsonResult="";
     private String url;
-    private String ip="172.19.12.139";
+    private String ip="192.168.1.8";
     private int selection;
+    private String id;
     private RVAdapter adapter;
     private RecyclerView recycler;
     private WebServiceConnection() {
@@ -48,11 +49,7 @@ public class WebServiceConnection {
         public JsonReadTask() {
         }
 
-        /**
-         * Autor: Seth Stalley
-         * @param params
-         * @return
-         */
+
         @Override
         protected String doInBackground(String... params) {
             DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
@@ -64,7 +61,6 @@ public class WebServiceConnection {
                 HttpEntity entity = response.getEntity();
 
                 inputStream = entity.getContent();
-                // json is UTF-8 by default
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder();
 
@@ -140,17 +136,20 @@ public class WebServiceConnection {
                             JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                             String name = jsonChildNode.getString("nombre");
                             String schedule= jsonChildNode.getString("horario");
-
-                            installations.add(new Restaurant(name,schedule) );
+                            String id=jsonChildNode.getString("id");
+                            installations.add(new Restaurant(name,schedule,id) );
                         }
                         break;
                     case 4: //show food
                         for (int i = 0; i < jsonMainNode.length(); i++) {
                             JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                            String name = jsonChildNode.getString("nombre");
-                            String description= jsonChildNode.getString("descripcion");
+                            if (jsonChildNode.getString("idRestaurante").equals(id)){
+                                String name = jsonChildNode.getString("nombre");
+                                String description= jsonChildNode.getString("descripcion");
 
-                            installations.add(new Food(name,description));
+                                installations.add(new Food(name,description));
+                            }
+
                         }
                         break;
                     case 5: //show shows
@@ -169,18 +168,20 @@ public class WebServiceConnection {
                             JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                             String name = jsonChildNode.getString("nombre");
                             String schedule= jsonChildNode.getString("horario");
-
-                            installations.add(new Store(name,schedule));
+                            String id=jsonChildNode.getString("id");
+                            installations.add(new Store(name,schedule,id));
                         }
 
                         break;
                     case 7: //show items
                         for (int i = 0; i < jsonMainNode.length(); i++) {
                             JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                            String name = jsonChildNode.getString("nombre");
-                            String price= jsonChildNode.getString("precio");
-                            String amount=jsonChildNode.getString("cantidad");
-                            installations.add(new Item(name,price,amount));
+                            if (jsonChildNode.getString("idTienda").equals(id)){
+                                String name = jsonChildNode.getString("nombre");
+                                String price= jsonChildNode.getString("precio");
+                                String amount=jsonChildNode.getString("cantidad");
+                                installations.add(new Item(name,price,amount));
+                            }
                         }
                         break;
                     case 8: //show contacts
@@ -228,8 +229,9 @@ public class WebServiceConnection {
         task.execute(new String[] { url });
     }
 
-    public void getFoods(RecyclerView recycler){
+    public void getFoods(RecyclerView recycler, String id){
         selection=4;
+        this.id=id;
         this.recycler=recycler;
         url="http://"+ip+":12/platos.php";
         JsonReadTask task = new JsonReadTask();
@@ -255,8 +257,9 @@ public class WebServiceConnection {
         task.execute(new String[] { url });
     }
 
-    public void getItems(RecyclerView recycler){
+    public void getItems(RecyclerView recycler, String id){
         selection=7;
+        this.id=id;
         this.recycler=recycler;
         url="http://"+ip+":12/articulos.php";
         JsonReadTask task = new JsonReadTask();
