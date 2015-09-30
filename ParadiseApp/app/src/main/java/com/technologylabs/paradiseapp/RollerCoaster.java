@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class RollerCoaster extends Installation{
 
-    public RollerCoaster(String name, ArrayList<Schedule> schedule, String description, String state, String timeToWait) {
+    public RollerCoaster(String name, String schedule, String description, String state, String timeToWait) {
         super(name, schedule);
 
         this.description=description;

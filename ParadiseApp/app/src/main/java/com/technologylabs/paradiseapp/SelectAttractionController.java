@@ -26,7 +26,6 @@ public class SelectAttractionController extends Activity {
                 b.putInt("Selection", 1); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
             }
         });
         final Button button2 = (Button) findViewById(R.id.simulators);
@@ -38,7 +37,6 @@ public class SelectAttractionController extends Activity {
                 b.putInt("Selection", 2); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
             }
         });
     }

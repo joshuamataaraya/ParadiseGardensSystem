@@ -24,18 +24,34 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Horario: "
-            android:id="@+id/TagSchedule"
+            android:text="Cargo: "
+            android:id="@+id/TagEmployment"
             android:layout_below="@+id/name"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="De 5 a 9."
-            android:id="@+id/schedule"
+            android:text="Admin"
+            android:id="@+id/employment"
             android:layout_below="@+id/name"
-            android:layout_toRightOf="@id/TagSchedule"
+            android:layout_toRightOf="@id/TagEmployment"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero: "
+            android:id="@+id/TagNum"
+            android:layout_below="@+id/TagEmployment"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="88888888"
+            android:id="@+id/num"
+            android:layout_below="@+id/employment"
+            android:layout_toRightOf="@id/TagNum"
+            />
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

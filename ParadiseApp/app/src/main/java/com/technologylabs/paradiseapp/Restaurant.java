@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Restaurant extends Installation {
 
-    public Restaurant(String name, ArrayList<Schedule> schedule) {
+    public Restaurant(String name, String schedule) {
         super(name, schedule);
     }
 }

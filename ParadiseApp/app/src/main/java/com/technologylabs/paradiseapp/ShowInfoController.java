@@ -57,40 +57,37 @@ public class ShowInfoController extends Activity {
         List<Installation> installation;
         switch (typeOfData){
             case 1: //show attractions
-                installation= WebServiceConnection.getInstance().getAttractions();
-                adapter = new RVAdapter(installation,1);
-                recycler.setAdapter(adapter);
+                this.setTitle("Monta\u00f1as Rusa");
+                WebServiceConnection.getInstance().getAttractions(recycler);
                 break;
             case 2: //show simulators
-                installation= WebServiceConnection.getInstance().getSimulators();
-                adapter = new RVAdapter(installation,2);
-                recycler.setAdapter(adapter);
+                this.setTitle("Simuladores");
+                WebServiceConnection.getInstance().getSimulators(recycler);
                 break;
 
             case 3: //show restaurant
-                installation= WebServiceConnection.getInstance().getRestaurants();
-                adapter = new RVAdapter(installation,3);
-                recycler.setAdapter(adapter);
+                this.setTitle("Restaurantes");
+                WebServiceConnection.getInstance().getRestaurants(recycler);
                 break;
             case 4: //show food
-                installation= WebServiceConnection.getInstance().getFoods();
-                adapter = new RVAdapter(installation,4);
-                recycler.setAdapter(adapter);
+                this.setTitle("Comidas");
+                WebServiceConnection.getInstance().getFoods(recycler);
                 break;
             case 5: //show shows
-                installation= WebServiceConnection.getInstance().getShows();
-                adapter = new RVAdapter(installation,5);
-                recycler.setAdapter(adapter);
+                this.setTitle("Shows");
+                WebServiceConnection.getInstance().getShows(recycler);
                 break;
             case 6: //show stores
-                installation= WebServiceConnection.getInstance().getStores();
-                adapter = new RVAdapter(installation,6);
-                recycler.setAdapter(adapter);
+                this.setTitle("Tiendas");
+                WebServiceConnection.getInstance().getStores(recycler);
                 break;
             case 7: //show items
-                installation= WebServiceConnection.getInstance().getItems();
-                adapter = new RVAdapter(installation,7);
-                recycler.setAdapter(adapter);
+                this.setTitle("Art\u00edculos");
+                WebServiceConnection.getInstance().getItems(recycler);
+                break;
+            case 8: //show contactanos
+                this.setTitle("Cont\u00e1ctanos");
+                WebServiceConnection.getInstance().getContacts(recycler);
                 break;
         }
     }

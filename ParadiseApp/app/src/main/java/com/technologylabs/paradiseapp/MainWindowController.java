@@ -26,7 +26,7 @@ public class MainWindowController extends Activity {
                 // Perform action on click
                 Intent intent = new Intent(MainWindowController.this, SelectAttractionController.class);
                 startActivity(intent);
-                finish();
+
             }
         });
         final Button button2 = (Button) findViewById(R.id.restaurantes);
@@ -38,7 +38,6 @@ public class MainWindowController extends Activity {
                 b.putInt("Selection", 3); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
             }
         });
         final Button button3 = (Button) findViewById(R.id.shows);
@@ -50,7 +49,6 @@ public class MainWindowController extends Activity {
                 b.putInt("Selection", 5); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
             }
         });
         final Button button4 = (Button) findViewById(R.id.tiendas);
@@ -62,7 +60,17 @@ public class MainWindowController extends Activity {
                 b.putInt("Selection", 6); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
                 startActivity(intent);
-                finish();
+            }
+        });
+        final Button button5 = (Button) findViewById(R.id.contactanos);
+        button5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent intent = new Intent(MainWindowController.this, ShowInfoController.class);
+                Bundle b = new Bundle();
+                b.putInt("Selection", 8); //Your id
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
             }
         });
 

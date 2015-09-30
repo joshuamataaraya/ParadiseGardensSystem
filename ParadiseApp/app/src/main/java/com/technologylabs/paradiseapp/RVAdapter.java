@@ -1,13 +1,18 @@
 package com.technologylabs.paradiseapp;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+
+import static android.support.v4.app.ActivityCompat.startActivity;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHolder >{
 
@@ -24,7 +29,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         public TextView capacity;
         public TextView place;
         public TextView amount;
-
+        public TextView num;
+        public TextView employment;
 
 
 
@@ -55,6 +61,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
                 case 7: //show items
                     showItems();
                     break;
+                case 8:
+                    showContacts();
             }
         }
         public void showAttractions(){
@@ -75,6 +83,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         public void showRestaurats(){
             name = (TextView)itemView.findViewById(R.id.name);
             schedule = (TextView)itemView.findViewById(R.id.schedule);
+
             //PENDING TO ADD BUTTONS OF FOODS
         }
         public void showFood(){
@@ -97,7 +106,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
             price = (TextView)itemView.findViewById(R.id.price);
             amount = (TextView)itemView.findViewById(R.id.amount);
         }
-
+        public void showContacts(){
+            name = (TextView)itemView.findViewById(R.id.name);
+            num= (TextView)itemView.findViewById(R.id.num);
+            employment= (TextView)itemView.findViewById(R.id.employment);
+        }
     }
     RVAdapter(List<Installation> installations, int pSelection){
         this.installations =  installations;
@@ -111,8 +124,42 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
 
     @Override
     public AttractionViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card_attraction, viewGroup, false);
+        View v=null;
+        switch (selection){
+            case 1: //show attractions
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_attraction, viewGroup, false);
+                break;
+            case 2: //show simulators
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_simulator, viewGroup, false);
+                break;
+
+            case 3: //show restaurant
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_restaurant, viewGroup, false);
+                break;
+            case 4: //show food
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_food, viewGroup, false);
+                break;
+            case 5: //show shows
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_show, viewGroup, false);
+                break;
+            case 6: //show stores
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_store, viewGroup, false);
+                break;
+            case 7: //show items
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_item, viewGroup, false);
+                break;
+            case 8: //show items
+                v = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.card_contact, viewGroup, false);
+                break;
+        }
         AttractionViewHolder pvh = new AttractionViewHolder(v);
         return pvh;
     }
@@ -143,6 +190,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
             case 7: //show items
                 fillItems(attractionViewHolder,i);
                 break;
+            case 8:
+                fillContacts(attractionViewHolder, i);
         }
     }
     public void fillAttractions(AttractionViewHolder attractionViewHolder, int i){
@@ -162,15 +211,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         attractionViewHolder.description.setText(simulator.description);
         attractionViewHolder.schedule.setText(simulator.getSchedule());
         attractionViewHolder.state.setText(simulator.state);
-        attractionViewHolder.timeToWait.setText(simulator.timeToWait);
         attractionViewHolder.capacity.setText(simulator.capacity);
+        attractionViewHolder.timeToWait.setText(simulator.timeToWait);
     }
     public void fillRestaurants(AttractionViewHolder attractionViewHolder, int i){
         Restaurant restaurant=(Restaurant)installations.get(i);
 
         attractionViewHolder.name.setText(restaurant.name);
         attractionViewHolder.schedule.setText(restaurant.getSchedule());
-        //PENDING TO ADD THE BUTTONS OF FOOD
+
+
     }
     public void fillFood(AttractionViewHolder attractionViewHolder, int i){
         Food food=(Food)installations.get(i);
@@ -201,7 +251,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         attractionViewHolder.price.setText(item.price);
         attractionViewHolder.amount.setText(item.amount);
     }
+    public void fillContacts(AttractionViewHolder attractionViewHolder, int i){
+        Contact contact=(Contact)installations.get(i);
 
+        attractionViewHolder.name.setText(contact.name);
+        attractionViewHolder.employment.setText(contact.employment);
+        attractionViewHolder.num.setText(contact.num);
+    }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

@@ -36,6 +36,7 @@ public class LoginTwitterController extends Activity {
                 // Do something with result, which provides a TwitterSession for making API calls
                 Intent myIntent=new Intent(LoginTwitterController.this, MainWindowController.class);
                 startActivity(myIntent);
+                finish();
             }
 
             @Override

@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Installation {
-    public Installation(String name, ArrayList<Schedule> schedule) {
+    public Installation(String name, String schedule) {
         this.name = name;
         this.schedule = schedule;
-        this.photoId = photoId;
     }
 
     public String getSchedule() {
-        return schedule.toString();
+        return schedule;
     }
 
     public String getName() {
@@ -19,6 +18,5 @@ public class Installation {
     }
 
     String name;
-    ArrayList<Schedule> schedule;
-    int photoId;
+    String schedule;
 }
