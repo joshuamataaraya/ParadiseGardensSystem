@@ -2,6 +2,7 @@ package com.technologylabs.paradiseapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,8 +17,9 @@ import static android.support.v4.app.ActivityCompat.startActivity;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHolder >{
 
-    List<Installation> installations;
+    static List<Installation> installations;
     static int selection;
+    static boolean isSearch;
     public static class AttractionViewHolder extends RecyclerView.ViewHolder {
         public CardView cv;
         public TextView name;
@@ -33,6 +35,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
         public TextView employment;
         public Button btn;
         public MainWindowController windowController;
+
 
         AttractionViewHolder (View itemView) {
             super(itemView);
@@ -63,6 +66,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
                     break;
                 case 8:
                     showContacts();
+                    break;
+                case 9:
+                    showSearchResults();
             }
         }
         public void showAttractions(){
@@ -111,6 +117,26 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
             num= (TextView)itemView.findViewById(R.id.num);
             employment= (TextView)itemView.findViewById(R.id.employment);
         }
+        public void showSearchResults(){
+           if (installations!=null && installations.get(0) instanceof RollerCoaster){
+               showAttractions();
+           }
+            if (installations!=null && installations.get(0) instanceof Simulator){
+                showSimulators();
+            }
+            if (installations!=null && installations.get(0) instanceof Store){
+                showStores();
+            }
+            if (installations!=null && installations.get(0) instanceof Restaurant){
+                showRestaurats();
+            }
+            if (installations!=null && installations.get(0) instanceof Show){
+                showShows();
+            }
+            if (installations!=null && installations.get(0) instanceof Contact){
+                showContacts();
+            }
+        }
     }
     RVAdapter(List<Installation> installations, int pSelection){
         this.installations =  installations;
@@ -156,9 +182,35 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
                 v = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.card_item, viewGroup, false);
                 break;
-            case 8: //show items
+            case 8: //show contact
                 v = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.card_contact, viewGroup, false);
+                break;
+            case 9:
+                if (installations!=null && installations.get(0) instanceof RollerCoaster){
+                    v = LayoutInflater.from(viewGroup.getContext())
+                            .inflate(R.layout.card_attraction, viewGroup, false);
+                }
+                if (installations!=null && installations.get(0) instanceof Simulator){
+                    v = LayoutInflater.from(viewGroup.getContext())
+                            .inflate(R.layout.card_simulator, viewGroup, false);
+                }
+                if (installations!=null && installations.get(0) instanceof Store){
+                    v = LayoutInflater.from(viewGroup.getContext())
+                            .inflate(R.layout.card_store, viewGroup, false);
+                }
+                if (installations!=null && installations.get(0) instanceof Restaurant){
+                    v = LayoutInflater.from(viewGroup.getContext())
+                            .inflate(R.layout.card_restaurant, viewGroup, false);
+                }
+                if (installations!=null && installations.get(0) instanceof Show){
+                    v = LayoutInflater.from(viewGroup.getContext())
+                            .inflate(R.layout.card_show, viewGroup, false);
+                }
+                if (installations!=null && installations.get(0) instanceof Contact){
+                    v = LayoutInflater.from(viewGroup.getContext())
+                            .inflate(R.layout.card_contact, viewGroup, false);
+                }
                 break;
         }
         AttractionViewHolder pvh = new AttractionViewHolder(v);
@@ -193,6 +245,26 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttractionViewHold
                 break;
             case 8:
                 fillContacts(attractionViewHolder, i);
+                break;
+            case 9:
+                if (installations!=null && installations.get(0) instanceof RollerCoaster){
+                    fillAttractions(attractionViewHolder, i);
+                }
+                if (installations!=null && installations.get(0) instanceof Simulator){
+                    fillSimulators(attractionViewHolder, i);
+                }
+                if (installations!=null && installations.get(0) instanceof Store){
+                    fillStores(attractionViewHolder, i);
+                }
+                if (installations!=null && installations.get(0) instanceof Restaurant){
+                    fillRestaurants(attractionViewHolder, i);
+                }
+                if (installations!=null && installations.get(0) instanceof Show){
+                    fillShows(attractionViewHolder, i);
+                }
+                if (installations!=null && installations.get(0) instanceof Contact){
+                    fillContacts(attractionViewHolder, i);
+                }
         }
     }
     public void fillAttractions(AttractionViewHolder attractionViewHolder, int i){

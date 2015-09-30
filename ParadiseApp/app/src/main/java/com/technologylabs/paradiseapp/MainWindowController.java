@@ -62,8 +62,19 @@ public class MainWindowController extends Activity {
                 startActivity(intent);
             }
         });
-        final Button button5 = (Button) findViewById(R.id.contactanos);
+        final Button button5 = (Button) findViewById(R.id.Busqueda);
         button5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent intent = new Intent(MainWindowController.this, SearchController.class);
+                Bundle b = new Bundle();
+                b.putInt("Selection", 9); //Your id
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+        final Button button6 = (Button) findViewById(R.id.contactanos);
+        button6.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
                 Intent intent = new Intent(MainWindowController.this, ShowInfoController.class);

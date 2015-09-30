@@ -36,6 +36,12 @@
             android:layout_gravity="center"
             android:id="@+id/shows"/>
         <Button
+            android:text="Busqueda"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/Busqueda"/>
+        <Button
             android:text="Contáctanos"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

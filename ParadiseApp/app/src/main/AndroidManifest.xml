@@ -35,6 +35,10 @@
             android:name=".SelectAttractionController"
             android:label="@string/title_activity_select_atracction" >
         </activity>
+        <activity
+            android:name=".SearchController"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

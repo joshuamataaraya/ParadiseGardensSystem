@@ -1,7 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.technologylabs.paradiseapp.ShowInfoController">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    tools:context="com.herprogramacion.toolbarapp.DetailActivity">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/ic_search"
+        android:orderInCategory="1"
+        android:title="@string/abc_search_hint"
+        app:showAsAction="ifRoom" />
+
 </menu>
